@@ -1,20 +1,17 @@
+from Clases.GameNode import Game_Node
 from Table_gen.dominoes import make_tiles
-def brute_force():
-    print("Tablero: ", Tablero)
-    print("Fichas: ", Fichas)
-    return
+from Algorithms.BruteForce import *
 
-def main(tdNum):
-    #@var Tablero = variable global donde se guarda la matriz a tablero a trabajar
-    #@var Fichas = variable global donde se guardan las fichas determinadas por tdNum 
-    global Tablero
-    global Fichas
-    Tablero = []
-    Fichas = []
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Funcion de lectura de archivos de Tablero
+#
+# @param num = numero de archivo a leer
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def read_file(num):
 
     #Abre el archivo y lo lee, si no lo encuentra devuelve un mensaje y cierra el programa
     try:
-        with open('Table_gen/TableroDoble'+str(tdNum)+'.txt') as tdFile:
+        with open('Table_gen/TableroDoble'+str(num)+'.txt') as tdFile:
             lines = tdFile.readlines()
             for i in range(len(lines)):
                 lines[i] = lines[i].replace("\n","")
@@ -27,11 +24,28 @@ def main(tdNum):
     for line in lines[2:]:
         if line == '':
             break
-        Tablero.append(line.split(" ")[:-1])
-    
+        holder = []
+        for item in (line.split(" ")[:-1]):
+            
+            holder.append(Game_Node(int(item)))
+        Tablero.append(holder)
     return
 
 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#Funcion principal del programa 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def main():
+    read_file(2)
+    brute_force(Tablero, Fichas)
+    
+
+
 if __name__ == "__main__":
-    main(2)
-    brute_force()
+    #@var Tablero = variable global donde se guarda la matriz a tablero a trabajar
+    #@var Fichas = variable global donde se guardan las fichas determinadas por tdNum 
+    Tablero = []
+    Fichas = []
+    #Llamada a funcion princial del programa
+    main()
