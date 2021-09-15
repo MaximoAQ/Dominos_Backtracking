@@ -67,7 +67,7 @@ def create_puzzle(n):
     toFile("TableroDoble" + str(n), n, board, solution)
 
 def toFile(filename, n, board, solution):    
-    file = open(filename+ ".txt", "w")
+    file = open("Table_gen/"+filename+ ".txt", "w")
     file.write(str(n) +  "\n")
     file.write("\n")
 
@@ -83,9 +83,4 @@ def toFile(filename, n, board, solution):
     file.write("\n")
 
 if __name__ == "__main__":
-    create_puzzle(10)
-    create_puzzle(5)
-    create_puzzle(4)
-    create_puzzle(3)
-    create_puzzle(2)
-    create_puzzle(1)
+    create_puzzle(20)
