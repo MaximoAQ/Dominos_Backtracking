@@ -1,6 +1,7 @@
 from Clases.GameNode import Game_Node
 from Table_gen.dominoes import make_tiles
 from Algorithms.BruteForce import *
+from Helpers.misc import verify
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Funcion de lectura de archivos de Tablero
@@ -20,14 +21,15 @@ def read_file(num):
         return
 
     #inserta los valores del tablero del archivo en una matriz para poder utilizarla posteriormente
-    Fichas = make_tiles(int(lines[0]))
+    
     for line in lines[2:]:
         if line == '':
             break
         holder = []
+
         for item in (line.split(" ")[:-1]):
-            
-            holder.append(Game_Node(int(item)))
+            holder.append(int(item))
+
         Tablero.append(holder)
     return
 
@@ -37,9 +39,10 @@ def read_file(num):
 #Funcion principal del programa 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def main():
-    read_file(2)
-    brute_force(Tablero, Fichas)
-    
+    file = 2
+    read_file(file)
+    Fichas = make_tiles(file)
+    #brute_force(Tablero, Fichas)
 
 
 if __name__ == "__main__":

@@ -9,12 +9,24 @@ def brute_force(pTablero, pFichas):
     result_array = []
     chip_holder = []
 
-    # for row in range(len(Tablero)):
-    #     for i in Tablero[row]:
-    #         chip_holder.append(i)
-    #         if(len(chip_holder) == 2):
-    #             print(chip_holder)
-    #             chip_holder = []
+
+    for i in range(len(pTablero)):
+        print(pTablero[i])
+        for j in range(len(pTablero[i])):
+            if (isinstance(pTablero[i][j], str)):
+                print("chocobaby")
+            else:
+                try:
+                    chip_holder.append(pTablero[i][j])
+                    chip_holder.append(pTablero[i][j+1])
+                    pTablero[i][j] = str(pTablero[i][j])
+                    pTablero[i][j+1] = str(pTablero[i][j+1])
+
+                    
+                except:
+                    print("pero vamo a ver, terrible")
+
+                    
                 
         
         
@@ -22,11 +34,8 @@ def brute_force(pTablero, pFichas):
 
     
     for i in pTablero:
-        for j in i:
-            print(j, end=' ')
-        print()
+        print(i)
     # print(Fichas)
+    print(chip_holder)
 
-    
     return
-    
