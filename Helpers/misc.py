@@ -41,10 +41,12 @@ def verify(pPair, pList):
     if(pPair in pList):
         return True
     else:
-        pPair[0], pPair[1] = pPair[1], pPair[0]
+        swap(pPair)
         return pPair in pList
 
-
+def swap(pPair):
+    pPair[0], pPair[1] = pPair[1], pPair[0]
+    return 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Funcion generadora de soluciones para algoritmo de fuerza bruta
 #
@@ -58,7 +60,7 @@ def solucion_gen(num):
 
 def binary_increment(bin):
     
-    for i in range(1,len(bin)):
+    for i in range(1,len(bin)+1):
         if(bin[-i]) == 0:
             bin[-i] = 1
             return
