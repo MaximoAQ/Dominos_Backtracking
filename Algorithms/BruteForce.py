@@ -14,7 +14,7 @@ def brute_force(pTablero, pFichas):
         print(pTablero[i])
         for j in range(len(pTablero[i])):
             if (isinstance(pTablero[i][j], str)):
-                print("chocobaby")
+                print("used")
             else:
                 try:
                     chip_holder.append(pTablero[i][j])
@@ -24,14 +24,9 @@ def brute_force(pTablero, pFichas):
 
                     
                 except:
-                    print("pero vamo a ver, terrible")
+                    print("error")
 
                     
-                
-        
-        
-    
-
     
     for i in pTablero:
         print(i)

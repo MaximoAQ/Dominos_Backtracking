@@ -1,7 +1,9 @@
+import random
+
 from Clases.GameNode import Game_Node
 from Table_gen.dominoes import make_tiles
 from Algorithms.BruteForce import *
-from Helpers.misc import verify
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Funcion de lectura de archivos de Tablero
@@ -30,25 +32,36 @@ def read_file(num):
         for item in (line.split(" ")[:-1]):
             holder.append(int(item))
 
-        Tablero.append(holder)
+        Board.append(holder)
     return
 
+def solucion_gen(num):
+    solution = []
+    for i in range(num):
+        solution.append(random.randint(0,1))
+    return solution
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Funcion principal del programa 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def main():
-    file = 2
-    read_file(file)
-    Fichas = make_tiles(file)
+    N = 4
+    Fichas = make_tiles(N)
+    Solution_Size = len(Fichas)
+
+    read_file(N)
+    print(solucion_gen(Solution_Size))
+
     #brute_force(Tablero, Fichas)
 
 
 if __name__ == "__main__":
-    #@var Tablero = variable global donde se guarda la matriz a tablero a trabajar
-    #@var Fichas = variable global donde se guardan las fichas determinadas por tdNum 
-    Tablero = []
-    Fichas = []
+    #@var Board = variable global donde se guarda la matriz a tablero a trabajar
+    #@var Tiles = variable global donde se guardan las fichas determinadas por tdNum 
+    #@var Solutions = Matriz de posibles soluciones
+    Board = []
+    Tiles = []
+    
     #Llamada a funcion princial del programa
     main()
