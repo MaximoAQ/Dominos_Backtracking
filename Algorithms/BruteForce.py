@@ -1,36 +1,20 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algoritmo de resolucion de tablero domino haciendo uso de la fuerza bruta
 #
-# @param pTablero = Matriz sobre el cual se ejecutara el algoritmo para la busqueda de
+# @param pBoard = Matriz sobre el cual se ejecutara el algoritmo para la busqueda de
 #                   soluciones
-# @param pFichas = Lista de fichas que sera utilizada para verificaciones
+# @param pTiles = Lista de fichas que sera utilizada para verificaciones
+# @param pSolution = Posible solucion a verificar
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def brute_force(pTablero, pFichas):
+def brute_force(pBoard, pTiles, pSolution, ):
     result_array = []
-    chip_holder = []
-
-
-    for i in range(len(pTablero)):
-        print(pTablero[i])
-        for j in range(len(pTablero[i])):
-            if (isinstance(pTablero[i][j], str)):
-                print("used")
-            else:
-                try:
-                    chip_holder.append(pTablero[i][j])
-                    chip_holder.append(pTablero[i][j+1])
-                    pTablero[i][j] = str(pTablero[i][j])
-                    pTablero[i][j+1] = str(pTablero[i][j+1])
-
-                    
-                except:
-                    print("error")
+    tile_holder = []
 
                     
     
-    for i in pTablero:
+    for i in pBoard:
         print(i)
     # print(Fichas)
-    print(chip_holder)
+    print(tile_holder)
 
     return
