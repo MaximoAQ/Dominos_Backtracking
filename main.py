@@ -30,11 +30,13 @@ def main():
     print(sol_list)
 
 def mainBack():
-    N = 1
+    N = 3
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)
     sol_list = []
+    flag = True
+
 
     read_file(Board, N)
 
@@ -42,9 +44,13 @@ def mainBack():
         workBoard = deepcopy(Board)
         workTiles = deepcopy(Tiles)
 
+        if flag:
+            backtracking(workBoard, workTiles, posible_sol)
+            flag = False
+
         for i in listaSol:
-            if (comparador(posible_sol,listaSol[i])==False):        
-                if(brute_force(workBoard, workTiles, posible_sol)):
+            if (comparador(posible_sol,listaSol[i])==False):
+                if(backtracking(workBoard, workTiles, posible_sol)):
                     sol_list.append(deepcopy(posible_sol))
                     print(posible_sol)
         
@@ -60,4 +66,4 @@ if __name__ == "__main__":
     Tiles = []
 
     #Llamada a funcion princial del programa
-    main()
+    mainBack()

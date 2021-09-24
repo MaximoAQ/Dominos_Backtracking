@@ -13,13 +13,13 @@ listaFichas     = []
 listaIndices    = []
 
 #Genera una lista con listas que representan cada ficha ej: [[0,0],[0,1],[1,1]]
-def generarDominos(n):
-    global listaFichas
-    n+=1
-    for i in range(0,n):
-        for j in range (i,n):
-                listaFichas +=[[i,j]]
-    return lista
+# def generarDominos(n):
+#     global listaFichas
+#     n+=1
+#     for i in range(0,n):
+#         for j in range (i,n):
+#                 listaFichas +=[[i,j]]
+#     return lista
 
 def generarTabla(n):
     global listaIndices
@@ -73,7 +73,7 @@ def intToList(num):
 def agregarSol():
     global solActual
     global listaSol
-    if (solActual.size() != 0)
+    if (solActual.size() != 0):
         listaSol.append(solActual)
         solActual = []
 
@@ -152,7 +152,7 @@ def backtracking(pBoard,pTiles, pSolution):
                             pTiles.remove(tile_holder)
                         
                         # Se hace la llamada recursiva eliminando el paso actual de la solucion
-                        return brute_force(pBoard, pTiles, pSolution[1:])
+                        return backtracking(pBoard, pTiles, pSolution[1:])
                     
                     #Si no existe en la lista se asume que ya se coloco por lo tanto la solucion no es valida
                     else:
