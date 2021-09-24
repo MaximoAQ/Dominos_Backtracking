@@ -1,4 +1,4 @@
-from Helpers.misc import swap, verify
+from Helpers.misc import swap, verify,binlistToInt
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algoritmo de resolucion de tablero dominosa haciendo uso del Backtracking
@@ -11,6 +11,7 @@ from Helpers.misc import swap, verify
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 listaFichas     = []
 listaIndices    = []
+listaBinaria    = []
 
 #Genera una lista con listas que representan cada ficha ej: [[0,0],[0,1],[1,1]]
 # def generarDominos(n):
@@ -58,7 +59,7 @@ listaSol    = [] #Aqui se colocaran las distintas combinaciones ya probadas, par
 def comparador(sol,pre):
     value = True
     for i in range(0,len(pre)):
-        if pre[i]!=sol[i]:
+        if sol[i] != pre[i]:
             return False
     return value
 
@@ -73,9 +74,12 @@ def intToList(num):
 def agregarSol():
     global solActual
     global listaSol
-    if (solActual.size() != 0):
+    if (len(solActual) != 0):
         listaSol.append(solActual)
         solActual = []
+        #solActual.clear()
+
+
 
 
 def backtracking(pBoard,pTiles, pSolution):
@@ -117,6 +121,8 @@ def backtracking(pBoard,pTiles, pSolution):
                         #Si existe un error de indice esto significa que la solucion no es valida
                         except IndexError:
                             solActual.append(0)
+                            listaBinaria.append(binlistToInt(solActual))
+                            listaBinaria.sort()
                             agregarSol()
                             return False
 
@@ -137,6 +143,8 @@ def backtracking(pBoard,pTiles, pSolution):
                         #Si existe un error de indice esto significa que la solucion no es valida    
                         except IndexError:
                             solActual.append(1)
+                            listaBinaria.append(binlistToInt(solActual))
+                            listaBinaria.sort()
                             agregarSol()
                             return False
 
@@ -156,6 +164,9 @@ def backtracking(pBoard,pTiles, pSolution):
                     
                     #Si no existe en la lista se asume que ya se coloco por lo tanto la solucion no es valida
                     else:
+                        listaBinaria.append(binlistToInt(solActual))
+                        listaBinaria.sort()
+                        agregarSol()
                         return False
 
 

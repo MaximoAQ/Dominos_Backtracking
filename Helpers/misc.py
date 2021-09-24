@@ -67,3 +67,42 @@ def binary_increment(bin):
         else:
             bin[-i] = 0
     return
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def listToInt(lista):
+    strings = [str(integer) for integer in lista]
+    a_string = "".join(strings)
+    an_integer = int(a_string)
+    return an_integer
+
+def binlistToInt(binary):
+    number = 0
+    for b in binary:
+        number = (2 * number) + b
+    return number
+
+def reductorListas(sol,pre):
+    newSol=[]
+    if (len(pre)<=len(sol)):
+        for i in range(0,len(pre)):
+            newSol.append(sol[i])
+        return newSol
+    else:
+        return sol
+
+def busquedaBinaria(unaLista, item):
+    primero = 0
+    ultimo = len(unaLista)-1
+    encontrado = False
+
+    while primero<=ultimo and not encontrado:
+        puntoMedio = (primero + ultimo)//2
+        if unaLista[puntoMedio] == item:
+            encontrado = True
+        else:
+            if item < unaLista[puntoMedio]:
+                ultimo = puntoMedio-1
+            else:
+                primero = puntoMedio+1
+
+    return encontrado
