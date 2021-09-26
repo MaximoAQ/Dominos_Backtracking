@@ -9,7 +9,7 @@ from Algorithms.Backtracking import *
 #Funcion principal del programa 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def main():
-    N = 3
+    N = 5
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)
@@ -30,7 +30,7 @@ def main():
     print(sol_list)
 
 def mainBack():
-    N = 4
+    N = 5
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)

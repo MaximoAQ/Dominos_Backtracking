@@ -1,4 +1,4 @@
-from Helpers.misc import swap, verify,binlistToInt
+from Helpers.misc import swap, verify,binlistToInt,busquedaBinaria
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Algoritmo de resolucion de tablero dominosa haciendo uso del Backtracking
@@ -121,8 +121,9 @@ def backtracking(pBoard,pTiles, pSolution):
                         #Si existe un error de indice esto significa que la solucion no es valida
                         except IndexError:
                             solActual.append(0)
-                            listaBinaria.append(binlistToInt(solActual))
-                            listaBinaria.sort()
+                            if (busquedaBinaria(listaBinaria, binlistToInt(solActual)) == False):
+                                listaBinaria.append(binlistToInt(solActual))
+                                listaBinaria.sort()
                             agregarSol()
                             return False
 
@@ -143,8 +144,9 @@ def backtracking(pBoard,pTiles, pSolution):
                         #Si existe un error de indice esto significa que la solucion no es valida    
                         except IndexError:
                             solActual.append(1)
-                            listaBinaria.append(binlistToInt(solActual))
-                            listaBinaria.sort()
+                            if (busquedaBinaria(listaBinaria,binlistToInt(solActual))==False):
+                                listaBinaria.append(binlistToInt(solActual))
+                                listaBinaria.sort()
                             agregarSol()
                             return False
 
