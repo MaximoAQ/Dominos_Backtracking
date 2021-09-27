@@ -7,71 +7,75 @@ import sys
 class Ui_MainWindow(object):
     def __init__(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.setFixedSize(920, 515)
+        MainWindow.setFixedSize(980, 555)
         MainWindow.setWindowTitle("Dominosa")   
         self.centralwidget = QtWidgets.QWidget(MainWindow)
 
         #self.centralwidget.setObjectName("centralwidget")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.framePuzzle = QtWidgets.QFrame(self.centralwidget)
 
         self.font = QtGui.QFont()
         self.font.setFamily("Arial Rounded MT Bold")
         self.font.setPointSize(20)   
 
-
-        self.comboBox.setGeometry(QtCore.QRect(550, 450, 131, 31))
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-
-
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(750, 450, 93, 28))
-        self.pushButton.setObjectName("pushButton")
-
-
+        #LABEL_1 DOMINO
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(150, 20, 131, 31))
-
-
-
+        self.label.setGeometry(QtCore.QRect(185, 20, 131, 31))
         self.label.setFont(self.font)
         self.label.setObjectName("label")
+
+        #LABEL_2 SOLUTION
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(620, 20, 151, 31))
-
-
+        self.label_2.setGeometry(QtCore.QRect(660, 20, 151, 31))
         self.label_2.setFont(self.font)
         self.label_2.setObjectName("label_2")
 
-
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(120, 450, 201, 31))
-        self.lineEdit.setObjectName("lineEdit")
-
-
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit_2.setGeometry(QtCore.QRect(450, 450, 41, 31))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-
-
+        #LABEL_3 ARRAY
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(10, 440, 101, 41))
-
-
+        self.label_3.setGeometry(QtCore.QRect(20, 485, 101, 41))
         self.label_3.setFont(self.font)
         self.label_3.setObjectName("label_3")
 
-
+        #LABEL_4 SIZE
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(370, 450, 71, 31))
-
-
+        self.label_4.setGeometry(QtCore.QRect(370, 490, 71, 31))
         self.label_4.setFont(self.font)
         self.label_4.setObjectName("label_4")
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        #CAJA DE OPCIONES
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox.setGeometry(QtCore.QRect(550, 495, 131, 31))
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        
+        #BOTON DE EJECUTAR
+        self.buttonSolvePuzzle = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonSolvePuzzle.setGeometry(QtCore.QRect(830, 495, 93, 25))
+        self.buttonSolvePuzzle.setObjectName("buttonSolvePuzzle")
+        self.buttonSolvePuzzle.setDisabled(True) 
 
+        #BOTON DE COLOCAR EL GRID
+        self.buttonCreatePuzzle = QtWidgets.QPushButton(self.centralwidget)
+        self.buttonCreatePuzzle.setGeometry(QtCore.QRect(710, 495, 93, 25))
+        self.buttonCreatePuzzle.setObjectName("buttonCreatePuzzle")
+        self.buttonCreatePuzzle.setText("Create Puzzle")
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        #CAJA PARA EL ARRAY
+        #lineEditCreatePuzzle
+        self.lineEditCreatePuzzle = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEditCreatePuzzle.setGeometry(QtCore.QRect(120, 495, 200, 30))
+        self.lineEditCreatePuzzle.setObjectName("lineEditCreatePuzzle")
+
+        #CAJA PARA EL SIZE
+        #lineEditSetSize
+        self.lineEditSetSize = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEditSetSize.setGeometry(QtCore.QRect(450, 495, 40, 30))
+        self.lineEditSetSize.setObjectName("lineEditSetSize")
+       
+        #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -79,21 +83,92 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
+        self.buttonCreatePuzzle.clicked.connect(self.fill)
+
+        self.buttonSolvePuzzle.clicked.connect(self.pressed)
+
+
+        MainWindow.setCentralWidget(self.centralwidget)
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Brute Force"))
         self.comboBox.setItemText(1, _translate("MainWindow", "Backtracking"))
-        self.pushButton.setText(_translate("MainWindow", "Ejecutar"))
+        self.buttonSolvePuzzle.setText(_translate("MainWindow", "Execute"))
+        self.buttonCreatePuzzle.setText(_translate("MainWindow", "Put Grid"))
         self.label.setText(_translate("MainWindow", "Domino"))
-        self.label_2.setText(_translate("MainWindow", "Solucion"))
+        self.label_2.setText(_translate("MainWindow", "Solution"))
         self.label_3.setText(_translate("MainWindow", "Array"))
         self.label_4.setText(_translate("MainWindow", "Size"))
 
 
+    def fill(self):
+        self.size = self.lineEditSetSize.text()
+        self.char = self.lineEditCreatePuzzle.text()
+
+        if self.size == '' or self.char == '': 
+            self.popupWrongInput("No input", "Missing size or puzzle")
+            return
+
+        try:
+            self.size = int(self.size)        
+            int(self.char)                  
+        except ValueError:
+            self.popupWrongInput("Wrong input type", "Puzzle and size input must contain only digits")
+            return
+
+
+        if len(self.char) != (self.size + 1)*(self.size + 2):      
+            self.popupWrongInput("Wrong input", "Wrong input size or puzzle length")
+            return
+
+        self.buttonSolvePuzzle.setDisabled(False)
+
+        self.framePuzzle.setGeometry(QtCore.QRect((550 - 50*(self.size+2))/2, (600 - 50*(self.size+1))/2, 50*(self.size+2), 50*(self.size+1)))
+        while(self.framePuzzle.children()):
+            self.framePuzzle.children()[0].setParent(None)
+
+        self.framePuzzle.hide()
+        for i in range(self.size + 1): 
+            for j in range(self.size + 2):
+                self.label = QtWidgets.QLabel(self.framePuzzle)
+                self.label.setText(self.char[i * (self.size + 2) + j])
+                self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
+                self.label.setFont(self.font)
+                self.label.setStyleSheet(
+                        ".QLabel {border: 2px solid #cccccc;border-radius: 20px;background-color: #cccccc;}")
+                self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.framePuzzle.show()
 
 
 
+    def popupWrongInput(self, title, text):
+        msgbox = QMessageBox()
+        msgbox.setWindowTitle(title)
+        msgbox.setText(text)
+        msgbox.setIcon(QMessageBox.Critical)
+        msgbox.setInformativeText("See help in the lower right corner")
+        msgbox.setStandardButtons(QMessageBox.Close)
+        msgbox.exec_()
+
+    def popupNoSolution(self):
+        msgbox = QMessageBox()
+        msgbox.setWindowTitle("No solution")
+        msgbox.setText("No solution found for the given puzzle")
+        msgbox.setIcon(QMessageBox.Warning)
+        msgbox.setStandardButtons(QMessageBox.Close)
+        msgbox.exec_()
+
+    #INDICADOR DE OPCION A LA COMBO BOX
+    #HACER LLAMADA AL ALGORITMO ACA
+    def pressed(self):
+        if (self.comboBox.currentText()=="Backtracking"):
+            print(1)
+        else:
+            print(2)
 
 
 
