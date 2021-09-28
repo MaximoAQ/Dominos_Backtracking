@@ -3,6 +3,7 @@
 #
 # @param num = numero de archivo a leer
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+listaIndices    = []
 def read_file(Board, num):
 
     #Abre el archivo y lo lee, si no lo encuentra devuelve un mensaje y cierra el programa
@@ -123,3 +124,67 @@ def dominosaArr(size, array):
             break
 
     return matriz
+
+# Pasa un array comun a un una matriz ordenada para el BOARD
+def dominosaArr(size, array):
+    filas = []
+    matriz = []
+    while (True):
+        for i in range(0, size + 2):
+            filas.append(array[i])
+
+        matriz.append(filas)
+        del array[:size + 2]
+        filas = []
+
+        if len(array) < (size + 2):
+            break
+
+    return matriz
+
+#Pasa una lista de char a int
+def charToIntList(word):
+    newList = [char for char in word]
+    ''.join(newList)
+    newList = [int(integer) for integer in newList]
+    return newList
+
+def generarTabla(n):
+    global listaIndices
+    total = (n-1)*(n+2)
+    for i in range(0,total):
+        listaIndices += [False]
+    return listaIndices
+
+def genIndexList(size):
+    row = size+2
+    column = size+1
+    row_list=[]
+    matrix=[]
+    while(True):
+        for i in range(row):
+            row_list.append(False)
+
+        matrix.append(row_list)
+        row_list=[]
+        
+        if len(matrix)==column:
+            break    
+    
+    return matrix
+
+def solutionBoard(sol,board,size):
+
+    while (len(sol)!=0):
+        for i in range(size+1):
+            for j in range (size+2):
+                if (board[i][j]==False) and (sol[0]==0):
+                    board[i][j]="R"
+                    board[i][j+1]="L"
+                    del sol[0]
+                elif (board[i][j]==False) and (sol[0]==1):
+                    board[i][j]="D"
+                    board[i+1][j]="U"
+                    del sol[0]
+                #print(board)
+    return board

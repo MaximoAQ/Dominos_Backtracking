@@ -8,14 +8,14 @@ from Algorithms.Backtracking import *
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #Funcion principal del programa 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-def main():
-    N = 5
+def mainBrute(N,Board):
+    #N = 5
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)
     sol_list = []
 
-    read_file(Board, N)
+    #read_file(Board, N)
 
     for i in range(2**Solution_Size):
         workBoard = deepcopy(Board)
@@ -27,17 +27,20 @@ def main():
         
         binary_increment(posible_sol)
         
-    print(sol_list)
+        if (len(sol_list)>=1):
+            return sol_list[0]
+        
+    #print(sol_list)
 
-def mainBack():
-    N = 3
+def mainBack(N,Board):
+    #N = 5
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)
     sol_list = []
     flag = True
 
-    read_file(Board, N)
+    #read_file(Board, N)
 
     for i in range(2**Solution_Size):
         workBoard = deepcopy(Board)
@@ -49,11 +52,7 @@ def mainBack():
 
         x = binlistToInt(posible_sol)
         if not(busquedaBinaria(listaBinaria,x)):
-        #for i in range(0,len(listaSol)):
-            #x = binlistToInt(reductorListas(posible_sol,listaSol[i]))
-            #y = binlistToInt(listaSol[i])
-            #if not (comparador(posible_sol,listaSol[i])):
-           # if (z!=y):
+
             if(backtracking(workBoard, workTiles, posible_sol)):
                 sol_list.append(deepcopy(posible_sol))
                 print(posible_sol)
@@ -62,7 +61,7 @@ def mainBack():
 
         if (len(sol_list)>=1):
             return sol_list[0]
-    print(sol_list)
+    #print(sol_list)
 
 
 if __name__ == "__main__":
@@ -72,4 +71,4 @@ if __name__ == "__main__":
     Tiles = []
 
     #Llamada a funcion princial del programa
-    mainBack()
+    #mainBack(2,[[0,0,0,1],[0,2,1,1],[1,2,2,2]])

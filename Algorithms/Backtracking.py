@@ -10,7 +10,6 @@ from Helpers.misc import swap, verify,binlistToInt,busquedaBinaria
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 listaFichas     = []
-listaIndices    = []
 listaBinaria    = []
 
 #Genera una lista con listas que representan cada ficha ej: [[0,0],[0,1],[1,1]]
@@ -22,12 +21,7 @@ listaBinaria    = []
 #                 listaFichas +=[[i,j]]
 #     return lista
 
-def generarTabla(n):
-    global listaIndices
-    total = (n-1)*(n+2)
-    for i in range(0,total):
-        listaIndices += [False]
-    return listaIndices
+
 
 # Convierte a el int de solucion(sol) del mismo largo que el de prefijo(pre)
 def reductor(sol,pre):

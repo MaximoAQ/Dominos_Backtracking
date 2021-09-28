@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from qt_material import apply_stylesheet
+from Helpers.misc import *
+from main import *
 
 
 import sys
@@ -17,6 +19,7 @@ class Ui_MainWindow(object):
 
         #self.centralwidget.setObjectName("centralwidget")
         self.framePuzzle = QtWidgets.QFrame(self.centralwidget)
+        self.frameSolution = QtWidgets.QFrame(self.centralwidget)
 
         self.font = QtGui.QFont()
         self.font.setFamily("Arial Rounded MT Bold")
@@ -89,7 +92,7 @@ class Ui_MainWindow(object):
 
 
         self.buttonCreatePuzzle.clicked.connect(self.fill)
-
+        #self.buttonSolvePuzzle.clicked.connect(self.solve1)
         self.buttonSolvePuzzle.clicked.connect(self.pressed)
 
 
@@ -131,7 +134,7 @@ class Ui_MainWindow(object):
 
         self.buttonSolvePuzzle.setDisabled(False)
 
-        self.framePuzzle.setGeometry(QtCore.QRect((550 - 50*(self.size+2))/2, (600 - 50*(self.size+1))/2, 50*(self.size+2), 50*(self.size+1)))
+        self.framePuzzle.setGeometry(QtCore.QRect((550 - 50*(self.size+2))//2, (600 - 50*(self.size+1))//2, 50*(self.size+2), 50*(self.size+1)))
         while(self.framePuzzle.children()):
             self.framePuzzle.children()[0].setParent(None)
 
@@ -143,10 +146,95 @@ class Ui_MainWindow(object):
                 self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
                 self.label.setFont(self.font)
                 self.label.setStyleSheet(
-                        ".QLabel {border: 2px solid #cccccc;border-radius: 20px;background-color: #cccccc;}")
+                        ".QLabel {border: 2px solid #E70D4F;border-radius: 20px;background-color: #E70D4F;}")
                 self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.framePuzzle.show()
 
+    def solve1(self):
+        solution = mainBack(int(self.size), dominosaArr(self.size, charToIntList(self.char)))
+
+        self.frameSolution.setGeometry(
+            QtCore.QRect(550 + (550 - 50 * (self.size + 2)) // 2, (600 - 50 * (self.size + 1)) // 2, 50 * (self.size + 2),
+                         50 * (self.size + 1)))
+        while (self.frameSolution.children()):
+            self.frameSolution.children()[0].setParent(None)
+
+        self.frameSolution.hide()
+
+        indexTable = genIndexList(int(self.size))
+        
+        if (len(solution)!=0):
+            BOARD = solutionBoard(solution,indexTable,int(self.size))
+            for i in range(self.size + 1):  
+                for j in range(self.size + 2):
+                    self.label = QtWidgets.QLabel(self.frameSolution)
+                    self.label.setText(self.char[i * (self.size + 2) + j])
+                    self.label.setAlignment(QtCore.Qt.AlignCenter)
+                    self.label.setFont(self.font)
+                    self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
+                    if BOARD[i][j] == 'L':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-right-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('L')
+                    if BOARD[i][j] == 'R':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-bottom-left-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('R')
+                    if BOARD[i][j] == 'D':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-top-right-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('D')
+                    if BOARD[i][j] == 'U':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+
+        else:
+            self.popupNoSolution()
+        self.frameSolution.show()
+        self.buttonSolvePuzzle.setDisabled(True)
+
+    def solve2(self):
+        solution = mainBrute(int(self.size), dominosaArr(self.size, charToIntList(self.char)))
+
+        self.frameSolution.setGeometry(
+            QtCore.QRect(550 + (550 - 50 * (self.size + 2)) // 2, (600 - 50 * (self.size + 1)) // 2, 50 * (self.size + 2),
+                         50 * (self.size + 1)))
+        while (self.frameSolution.children()):
+            self.frameSolution.children()[0].setParent(None)
+
+        self.frameSolution.hide()
+
+        indexTable = genIndexList(int(self.size))
+        
+        if (len(solution)!=0):
+            BOARD = solutionBoard(solution,indexTable,int(self.size))
+            for i in range(self.size + 1):  
+                for j in range(self.size + 2):
+                    self.label = QtWidgets.QLabel(self.frameSolution)
+                    self.label.setText(self.char[i * (self.size + 2) + j])
+                    self.label.setAlignment(QtCore.Qt.AlignCenter)
+                    self.label.setFont(self.font)
+                    self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
+                    if BOARD[i][j] == 'L':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-right-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('L')
+                    if BOARD[i][j] == 'R':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-bottom-left-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('R')
+                    if BOARD[i][j] == 'D':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-top-right-radius: 15px;background-color: #E70D4F;}")
+                        #self.label.setText('D')
+                    if BOARD[i][j] == 'U':  
+                        self.label.setStyleSheet(
+                            ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+
+        else:
+            self.popupNoSolution()
+        self.frameSolution.show()
+        self.buttonSolvePuzzle.setDisabled(True)        
 
 
     def popupWrongInput(self, title, text):
@@ -166,13 +254,17 @@ class Ui_MainWindow(object):
         msgbox.setStandardButtons(QMessageBox.Close)
         msgbox.exec_()
 
+
     #INDICADOR DE OPCION A LA COMBO BOX
     #HACER LLAMADA AL ALGORITMO ACA
     def pressed(self):
         if (self.comboBox.currentText()=="Backtracking"):
-            print(1)
+            print("BACKTRACKING ESCOGIDO")
+            self.solve1()
         else:
-            print(2)
+            print("BRUTEFORCE ESCOGIDO")
+            self.solve2()
+
 
 
 
@@ -181,7 +273,7 @@ def main():
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow(MainWindow)
     MainWindow.show()
-    apply_stylesheet(app,theme= 'dark_red.xml')
+    apply_stylesheet(app,theme = 'dark_red.xml')
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
