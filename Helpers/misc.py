@@ -106,3 +106,20 @@ def busquedaBinaria(unaLista, item):
                 primero = puntoMedio+1
 
     return encontrado
+
+
+def dominosaArr(size, array):
+    filas = []
+    matriz = []
+    while (True):
+        for i in range(0, size + 2):
+            filas.append(array[i])
+
+        matriz.append(filas)
+        del array[:size + 2]
+        filas = []
+
+        if len(array) < (size + 2):
+            break
+
+    return matriz

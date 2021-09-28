@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
+from qt_material import apply_stylesheet
+
 
 import sys
 
@@ -10,6 +12,8 @@ class Ui_MainWindow(object):
         MainWindow.setFixedSize(980, 555)
         MainWindow.setWindowTitle("Dominosa")   
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+
+
 
         #self.centralwidget.setObjectName("centralwidget")
         self.framePuzzle = QtWidgets.QFrame(self.centralwidget)
@@ -177,6 +181,7 @@ def main():
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow(MainWindow)
     MainWindow.show()
+    apply_stylesheet(app,theme= 'dark_red.xml')
     sys.exit(app.exec_())
 
 if __name__ == "__main__":

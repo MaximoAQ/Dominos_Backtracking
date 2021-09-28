@@ -30,7 +30,7 @@ def main():
     print(sol_list)
 
 def mainBack():
-    N = 5
+    N = 3
     Tiles = make_tiles(N)
     Solution_Size = len(Tiles)
     posible_sol = solucion_gen(Solution_Size)
@@ -59,7 +59,9 @@ def mainBack():
                 print(posible_sol)
         
         binary_increment(posible_sol)
-        
+
+        if (len(sol_list)>=1):
+            return sol_list[0]
     print(sol_list)
 
 
