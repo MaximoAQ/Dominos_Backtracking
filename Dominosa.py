@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMessageBox
 from qt_material import apply_stylesheet
 from Helpers.misc import *
 from main import *
+import time
 
 
 import sys
@@ -151,6 +152,7 @@ class Ui_MainWindow(object):
         self.framePuzzle.show()
 
     def solve1(self):
+
         solution = mainBack(int(self.size), dominosaArr(self.size, charToIntList(self.char)))
 
         self.frameSolution.setGeometry(
@@ -162,8 +164,11 @@ class Ui_MainWindow(object):
         self.frameSolution.hide()
 
         indexTable = genIndexList(int(self.size))
+
+        if (solution==False):
+            self.popupNoSolution()
         
-        if (len(solution)!=0):
+        elif (len(solution)!=0):
             BOARD = solutionBoard(solution,indexTable,int(self.size))
             for i in range(self.size + 1):  
                 for j in range(self.size + 2):
@@ -188,7 +193,7 @@ class Ui_MainWindow(object):
                         self.label.setStyleSheet(
                             ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
 
-        else:
+        elif (solution==False):
             self.popupNoSolution()
         self.frameSolution.show()
         self.buttonSolvePuzzle.setDisabled(True)
@@ -205,8 +210,9 @@ class Ui_MainWindow(object):
         self.frameSolution.hide()
 
         indexTable = genIndexList(int(self.size))
-        
-        if (len(solution)!=0):
+        if (solution==False):
+            self.popupNoSolution()
+        elif (len(solution)!=0):
             BOARD = solutionBoard(solution,indexTable,int(self.size))
             for i in range(self.size + 1):  
                 for j in range(self.size + 2):
@@ -231,7 +237,7 @@ class Ui_MainWindow(object):
                         self.label.setStyleSheet(
                             ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #FF5733;}")#E70D4F
 
-        else:
+        elif (solution==False):
             self.popupNoSolution()
         self.frameSolution.show()
         self.buttonSolvePuzzle.setDisabled(True)        
@@ -259,11 +265,19 @@ class Ui_MainWindow(object):
     #HACER LLAMADA AL ALGORITMO ACA
     def pressed(self):
         if (self.comboBox.currentText()=="Backtracking"):
-            print("BACKTRACKING ESCOGIDO")
+            inicio = time.time()
+            print("Backtracking selected")
             self.solve1()
+            fin = time.time()
+            duracion = (fin - inicio)
+            print("Backtracking lasted: ",duracion," seconds")
         else:
-            print("BRUTEFORCE ESCOGIDO")
+            inicio = time.time()
+            print("Brute force selected")
             self.solve2()
+            fin = time.time()
+            duracion = (fin - inicio)
+            print("Brute Force lasted: ",duracion, " seconds")
 
 
 

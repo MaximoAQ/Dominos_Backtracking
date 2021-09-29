@@ -26,10 +26,11 @@ def mainBrute(N,Board):
             print(posible_sol)
         
         binary_increment(posible_sol)
-        
+
         if (len(sol_list)>=1):
             return sol_list[0]
-        
+    if (len(sol_list)==0):
+        return False
     #print(sol_list)
 
 def mainBack(N,Board):
@@ -61,6 +62,8 @@ def mainBack(N,Board):
 
         if (len(sol_list)>=1):
             return sol_list[0]
+    if (len(sol_list)==0):
+        return False
     #print(sol_list)
 
 
