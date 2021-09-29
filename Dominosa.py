@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
                 self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
                 self.label.setFont(self.font)
                 self.label.setStyleSheet(
-                        ".QLabel {border: 2px solid #E70D4F;border-radius: 20px;background-color: #E70D4F;}")
+                        ".QLabel {border: 2px solid #FF3264;border-radius: 20px;background-color: #FF3264;}")#E70D4F
                 self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.framePuzzle.show()
 
@@ -197,7 +197,7 @@ class Ui_MainWindow(object):
         solution = mainBrute(int(self.size), dominosaArr(self.size, charToIntList(self.char)))
 
         self.frameSolution.setGeometry(
-            QtCore.QRect(550 + (550 - 50 * (self.size + 2)) // 2, (600 - 50 * (self.size + 1)) // 2, 50 * (self.size + 2),
+            QtCore.QRect(500 + (500 - 50 * (self.size + 2)) // 2, (600 - 50 * (self.size + 1)) // 2, 50 * (self.size + 2),
                          50 * (self.size + 1)))
         while (self.frameSolution.children()):
             self.frameSolution.children()[0].setParent(None)
@@ -217,19 +217,19 @@ class Ui_MainWindow(object):
                     self.label.setGeometry(QtCore.QRect(j * 40, i * 40, 40, 40))
                     if BOARD[i][j] == 'L':  
                         self.label.setStyleSheet(
-                            ".QLabel {border: 2px solid;border-top-right-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+                            ".QLabel {border: 2px solid;border-top-right-radius: 15px;border-bottom-right-radius: 15px;background-color: #FF5733;}")
                         #self.label.setText('L')
                     if BOARD[i][j] == 'R':  
                         self.label.setStyleSheet(
-                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-bottom-left-radius: 15px;background-color: #E70D4F;}")
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-bottom-left-radius: 15px;background-color: #FF5733;}")
                         #self.label.setText('R')
                     if BOARD[i][j] == 'D':  
                         self.label.setStyleSheet(
-                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-top-right-radius: 15px;background-color: #E70D4F;}")
+                            ".QLabel {border: 2px solid;border-top-left-radius: 15px;border-top-right-radius: 15px;background-color: #FF5733;}")
                         #self.label.setText('D')
                     if BOARD[i][j] == 'U':  
                         self.label.setStyleSheet(
-                            ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #E70D4F;}")
+                            ".QLabel {border: 2px solid;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;background-color: #FF5733;}")#E70D4F
 
         else:
             self.popupNoSolution()
